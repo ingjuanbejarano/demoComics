@@ -1,0 +1,14 @@
+<div class="container">
+  <img src="assets/images/marvel-logo.png" alt="">
+  <form>
+    <input type="email" ngModel required name="email" 
+      #email="ngModel" placeholder="Correo electronico" (change)="getEmail(email.value)">
+    <input type="password" ngModel required name="pass" 
+      #pass="ngModel" placeholder="Contraseña" (change)="getPass(pass.value)">
+    <ul>
+      <button class="login" (click)="login()">Iniciar sesion</button>
+      <button class="sign" (click)="signIn()">Crear cuenta</button>
+    </ul>
+  </form>
+  <button class="google" (click)="loginGoogle()">Entrar con Google</button>
+</div>

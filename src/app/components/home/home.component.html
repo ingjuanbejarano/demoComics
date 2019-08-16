@@ -1,0 +1,11 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="card" *ngFor="let comic of allComics | async">
+        <a href="{{comic.urls[0].url}}" target="_blank">
+            <img class="image" src="{{comic.thumbnail.path}}.{{comic.thumbnail.extension}}" 
+            alt="{{comic.title}}" title="{{comic.title}}">
+        </a>
+        <span>{{comic.title}}</span>
+        <button (click)="guardarFavorito(comic)">Agregar a favoritos</button>
+    </div>
+</div>

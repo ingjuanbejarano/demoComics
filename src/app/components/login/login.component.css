@@ -1,0 +1,74 @@
+.container {
+    width: 600px;
+    margin: 80px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.container img {
+    min-width: 520px;
+    max-width: 520px;
+    min-height: 214px;
+    max-height: 214px;
+    margin: 0 auto;
+}
+
+.container form {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.container form input {
+    margin: 0 auto;
+    margin-bottom: 10px;
+    width: 400px;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.container form ul {
+    text-align: center;
+}
+
+.container form ul button {
+    background: #f2f2f2;
+    padding: 5px;
+    border-radius: 3px;
+    margin: 0 5px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.container form ul button:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.login {
+    border: solid 2px rgb(23, 23, 221);
+    color: rgb(23, 23, 221);
+}
+
+.sign {
+    border: solid 2px rgb(12, 156, 12);
+    color: rgb(12, 156, 12);
+}
+
+.container .google {
+    width: 100px;
+    margin: 0 auto;
+    background: #f2f2f2;
+    padding: 5px;
+    border-radius: 3px;
+    border: solid 2px rgb(214, 177, 14);
+    color: rgb(214, 177, 14);
+    font-weight: bold;
+}
+
+.container .google:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}

@@ -1,0 +1,14 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <h2>Lista de comics favoritos</h2>
+  <div class="favorito" *ngFor="let comic of allComics">
+    <div class="flx">
+      <span>{{comic.info.infoComic.title}}</span>
+      <ul>
+        <a href="{{comic.info.infoComic.urls[0].url}}" target="_blank">Detalles</a>
+        <button (click)="deleteFav(comic.id)">Borrar</button>
+      </ul>
+    </div>
+    <hr>
+  </div>
+</div>

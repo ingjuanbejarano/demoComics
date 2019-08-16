@@ -1,0 +1,10 @@
+<header>
+    <h1 *ngIf="auth.user$ | async as user; else cargando">{{user.email}}</h1>
+    <ng-template #cargando>Cargando...</ng-template>
+    <img src="assets/images/marvel-logo.png" alt="">
+    <nav class="menu">
+        <button (click)="toHome()">Inicio</button>
+        <button (click)="toFavorites()">Mis comics</button>
+        <button (click)="logOut()">Cerrar sesion</button>
+    </nav>
+</header>
