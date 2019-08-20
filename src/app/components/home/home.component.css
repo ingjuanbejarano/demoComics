@@ -41,3 +41,54 @@
     max-height: 370px;
 }
 
+@media screen and (max-width: 569px) {
+    .card {
+        margin: 0 auto;
+        margin-bottom: 30px;
+        width: 301px;
+        height: 540px;
+    }
+
+    .card button {
+        padding: 10px 0;
+    }
+
+    .image {
+        min-width: 301px;
+        max-width: 301px;
+        min-height: 444px;
+        max-height: 444px;
+    }
+
+    .card span {
+        overflow:hidden;
+        white-space:nowrap;
+        text-overflow: ellipsis;
+    }
+}
+
+@media screen and (max-width: 349px) {
+    .card {
+        margin: 0 auto;
+        margin-bottom: 30px;
+        width: 251px;
+        height: 450px;
+    }
+
+    .card button {
+        padding: 10px 0;
+    }
+
+    .image {
+        min-width: 251px;
+        max-width: 251px;
+        min-height: 370px;
+        max-height: 370px;
+    }
+
+    .card span {
+        overflow:hidden;
+        white-space:nowrap;
+        text-overflow: ellipsis;
+    }
+}

@@ -1,25 +1,33 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AuthService } from './auth.service';
+import { Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class StoreService {
-
+export class StoreService implements OnDestroy {
 
   private userId: string;
+  private userSub: Subscription;
   constructor(private afs: AngularFirestore, private authSrv: AuthService) {
-    authSrv.user$.subscribe( u => this.userId = u.uid);
+    this.userSub = this.authSrv.user$.subscribe( u => {
+      this.userId = u.uid;
+    });
+  }
+
+  ngOnDestroy() {
+    this.userSub.unsubscribe();
+  }
+
+  public getData() {
+    return this.afs.collection(this.userId).snapshotChanges();
   }
 
   public putFav(comic) {
     return this.afs.collection(this.userId).add({
       infoComic: comic
     });
-  }
-  public getComicsFav() {
-    return this.afs.collection(this.userId).get();
   }
 
   public deleteFav(id) {

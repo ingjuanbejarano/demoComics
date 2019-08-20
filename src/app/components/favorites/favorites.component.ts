@@ -23,20 +23,19 @@ export class FavoritesComponent implements OnInit, OnDestroy {
   }
 
   getComics() {
-    this.favSubscription = this.storeSrv.getComicsFav().subscribe( comicSnapshot => {
-      comicSnapshot.forEach( comicData => {
+    this.favSubscription = this.storeSrv.getData().subscribe(data => {
+      data.forEach(doc => {
         this.allComics.push({
-          id: comicData.id,
-          info: comicData.data()
+          id: doc.payload.doc.id,
+          info: doc.payload.doc.data()
         });
       });
     });
   }
 
   deleteFav(id: string) {
-    this.storeSrv.deleteFav(id).then(() => {
-      window.location.reload();
-    }).catch(error => {
+    this.allComics = [];
+    this.storeSrv.deleteFav(id).catch(error => {
       alert(error.message);
     });
   }

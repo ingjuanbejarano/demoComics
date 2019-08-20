@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { ComicsApiService } from '../../services/comics-api.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { StoreService } from 'src/app/services/store.service';
 
 @Component({
@@ -8,25 +8,43 @@ import { StoreService } from 'src/app/services/store.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  constructor(private comicSrv: ComicsApiService, private storeSrv: StoreService) { }
-
+  idComics = [];
   allComics: Observable<any>;
-
-  ngOnInit() {
-    this.getComics();
+  private userFavs: Subscription;
+  constructor(private comicSrv: ComicsApiService, private storeSrv: StoreService) {
   }
 
-  getComics() {
+  ngOnInit() {
+    this.userFavs = this.storeSrv.getData().subscribe(a => {
+      a.forEach(b => {
+        this.idComics.push(b.payload.doc.data().infoComic.id);
+      });
+    });
+  }
+
+  ngAfterViewInit() {
     this.allComics = this.comicSrv.getAllComics();
   }
 
+  ngOnDestroy() {
+    this.userFavs.unsubscribe();
+  }
+
   guardarFavorito(comic) {
-    this.storeSrv.putFav(comic).then(() => {
-      alert('Comic agregado a tu biblioteca de favoritos');
-    }).catch(error => {
-      alert(error.message);
-    });
+    if (this.verificarComic(comic.id)) {
+      alert('Ya existe este comic en tu lista de favoritos');
+    } else {
+      this.storeSrv.putFav(comic).then(() => {
+        alert('Comic agregado a tu biblioteca de favoritos');
+      }).catch(error => {
+        alert(error.message);
+      });
+    }
+  }
+
+  verificarComic(id) {
+    return this.idComics.some(idC => idC === id);
   }
 }

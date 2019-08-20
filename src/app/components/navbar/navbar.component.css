@@ -32,3 +32,53 @@ header .menu button:hover {
     opacity: .7;
     cursor: pointer;
 }
+
+@media screen and (max-width: 900px) {
+    header {
+        flex-direction: column;
+        padding: 20px 0;
+        align-items: center;
+        height: 150px;
+    }
+
+    header img {
+        order: 1;
+        width: 182px;
+        height: 54px;
+        margin-bottom: 5px;
+    }
+
+    header h1 {
+        order: 2;
+        font-size: 20px;
+    }
+
+    header .menu {
+        margin-top: 5px;
+        order: 3;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    header {
+        flex-direction: column;
+        padding: 20px 0;
+        align-items: center;
+        height: 180px;
+    }
+
+    header img {
+        order: 1;
+        width: 182px;
+        height: 54px;
+    }
+
+    header h1 {
+        order: 2;
+        font-size: 18px;
+    }
+
+    header .menu {
+        order: 3;
+    }
+}
