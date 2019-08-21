@@ -19,7 +19,8 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit() {
     this.userFavs = this.storeSrv.getData().subscribe(a => {
       a.forEach(b => {
-        this.idComics.push(b.payload.doc.data().infoComic.id);
+        const d: any = b.payload.doc.data();
+        this.idComics.push(d.infoComic.id);
       });
     });
   }
@@ -36,11 +37,15 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.verificarComic(comic.id)) {
       alert('Ya existe este comic en tu lista de favoritos');
     } else {
+      const id = this.idComics;
+      this.idComics = [];
       this.storeSrv.putFav(comic).then(() => {
         alert('Comic agregado a tu biblioteca de favoritos');
       }).catch(error => {
+        this.idComics = id;
         alert(error.message);
       });
+      console.log(this.idComics);
     }
   }
 
